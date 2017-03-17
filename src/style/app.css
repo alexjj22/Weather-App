@@ -1,0 +1,257 @@
+*{
+    box-sizing: border-box;
+}
+
+img{
+    max-width: 100%;
+}
+
+body{
+    margin: 0;
+}
+
+.app{
+    margin: 15px auto;
+    padding: 0 15px;
+}
+/*Header*/
+header{
+    margin-bottom: 40px;
+}
+
+header img {
+    width: 290px;
+    vertical-align: top;
+    border-radius: 4px;
+}
+
+/*Form*/
+form{
+    margin-bottom: 40px;
+}
+
+form input {
+    width: 290px;
+    display: block;
+    outline: none;
+    height: 40px;
+    padding: 0 15px;
+    font-size: 18px;
+    border-radius: 4px;
+    border: 1px solid lightgray;
+    transition: all ease .4s;
+}
+
+form input:focus{
+    border-color: cornflowerblue;
+}
+
+/*Tabs*/
+
+.tab{
+
+}
+
+.tab-title{
+    list-style-type: none;
+    margin: 0 0 40px 0;
+    padding: 0;
+    display: flex;
+}
+
+.tab-title li{
+    flex: 1;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+    position: relative;
+    line-height: 40px;
+    text-align: center;
+    transition: all ease .4s;
+    padding-right: 40px;
+}
+.tab-title li a{
+    display: block;
+    color: gray;
+    font-size: 18px;
+    text-decoration: none;
+    transition: all ease .4s;
+}
+
+.tab-title li:first-child{
+    border-left: 1px solid lightgray;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+.tab-title li:last-child{
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.remove{
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    height: 38px;
+    width: 38px;
+    background-image: url('http://agnesday.com/wp-content/uploads/2012/05/deletered.png');
+    background-position: 50% 50%;
+    background-size: 28px 28px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    opacity: .5;
+    transition: all ease .4s;
+}
+.remove:hover{
+    opacity: 1;
+}
+
+.active-title{
+    background-color: cornflowerblue;
+}
+.active-title a{
+    color: white !important;
+}
+
+.weather-describer{
+    list-style-type: none;
+    margin: 0;
+    padding-left: 0;
+}
+
+.weather-describer li{
+    margin-bottom: 30px;
+}
+
+.weather-describer li h4{
+    text-transform: uppercase;
+    margin: 0 0 20px;
+    color: #324A5E;
+    font-size: 24px;
+}
+
+.speed{
+    display: inline-block;
+    vertical-align: top;
+    font-size: 30px;
+    color: #324A5E;
+    font-weight: bold;
+    width: 60px;
+    height: 60px;
+    border: 3px solid #324A5E;
+    text-align: center;
+    line-height: 56px;
+    border-radius: 30px;
+}
+
+.compass-img{
+    enable-background:new 0 0 508 508;
+    width: 250px;
+}
+
+.compass-img .circle1{
+    fill:#FFD05B;
+}
+.compass-img .circle2{
+    fill:#324A5E;
+}
+.compass-img .circle3{
+    fill:#FFFFFF;
+}
+.compass-img .circle4{
+    fill:#2B3B4E;
+}
+.compass-img .path1{
+    fill:#324A5E;
+}
+.compass-img .path2{
+    fill:#FF7058;
+}
+.compass-img .polygon1{
+    fill:#E6E9EE;
+}
+.compass-img .polygon2{
+    /*fill:#FF7058;*/
+    fill: transparent;
+}
+.compass-img .polygon3{
+    /*fill:#84DBFF;*/
+    fill: cornflowerblue;
+}
+
+.arrow{
+    transform-origin: center;
+    transition: all ease 2.2s;
+    transform: rotate(0deg);
+}
+
+.description p{
+    font-size: 18px;
+    font-style: italic;
+    color: #324A5E;
+    margin: 0;
+    animation: show-text 1s forwards;
+}
+
+@keyframes show-text {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* common */
+
+.pressure svg{
+    width: 100px;
+    enable-background:new 0 0 512 512;
+}
+
+.temperature svg{
+    width: 100px;
+    enable-background:new 0 0 426.121 426.121;
+}
+
+.humidity svg{
+    width: 100px;
+    enable-background:new 0 0 328.611 328.611;
+}
+.temperature svg .path1{
+    fill:#76CDCE;
+}
+.temperature svg .path2{
+    fill:#F4581B;
+}
+.temperature svg .path3{
+    fill:#96E0DE;
+}
+.temperature svg .path4{
+    fill:#ED6440;
+}
+
+
+.common-info-wrap-wrap{
+
+}
+.common-inner .info{
+    display: inline-block;
+    vertical-align: top;
+    padding: 0 15px;
+}
+
+.common-inner .info span{
+    color: #324A5E;
+    font-size: 18px;
+    font-weight: bold;
+    display: block;
+}
+
+.common-inner .info h6{
+    font-size: 18px;
+    margin: 0 0 10px;
+    text-transform: uppercase;
+    color: #324A5E;
+}
+
+.common-inner > div{
+    display: inline-block;
+    vertical-align: top;
+}

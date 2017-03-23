@@ -9,7 +9,7 @@ export function request(city, cb) {
     //
     //     const response = JSON.parse(xhr.responseText);
     //     console.log( response );
-    //     cb(response); debugger;
+    //     cb(response);
     //
     // };
 

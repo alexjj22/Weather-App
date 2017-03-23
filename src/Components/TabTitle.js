@@ -1,27 +1,27 @@
 /**
  * Created by bigdrop on 13.03.17.
  */
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
-import { request } from '../functions';
+import {request} from '../functions';
 
-class TabTitle extends Component{
-    render(){
+class TabTitle extends Component {
+    render() {
         const cityName = this.props.cityName;
         const currentCity = this.props.currentCity;
-
+        // this.props.save()
         return (
             <li
                 className={ currentCity === cityName ? 'active-title' : '' }
             >
                 <a
                     href="#"
-                    onClick={()=> this.props.onGetForecast(cityName)}
+                    onClick={ ()=> this.props.onGetForecast()}
                 >{ cityName }</a>
                 <span
                     className="remove"
-
+                    onClick={ ()=> this.props.onDeleteCity() }
                 />
             </li>
         )
@@ -29,45 +29,55 @@ class TabTitle extends Component{
 }
 
 function mapStateToProps(state) {
-    const { currentCity } = state;
+    const {currentCity} = state;
     return {
         currentCity: currentCity
     }
 
 }
 
-// function mergeProps(stateProps, dispatchProps, ownProps) {
-//
-//     const { currentCity } = stateProps;
-//     const { onGetForecast } = dispatchProps;
-//     const { cityName } = ownProps;
-//
-//     if(currentCity === cityName){
-//         return Object.assign(
-//             {},
-//             currentCity,
-//             cityName
-//         );
-//     } else {
-//         return Object.assign(
-//             {},
-//             currentCity,
-//             cityName,
-//             onGetForecast
-//         );
-//     }
-// }
 
-export default connect(
-    mapStateToProps,
-    dispatch => ({
-        onGetForecast: city => {
-            request( city, (response) => {
+function mergeProps(stateProps, dispatchProps, ownProps) {
+    const {currentCity} = stateProps;
+    const {cityName} = ownProps;
+    const {dispatch} = dispatchProps;
+
+    function sendRequest() {
+        if (currentCity !== cityName) {
+            request(cityName, (response) => {
                 dispatch({
                     type: "GET_WEATHER",
                     weather: response
                 })
             })
         }
-    })
+    }
+
+    function handleDeleteCity(){
+        // console.log(cityName)
+        dispatch({
+            type: "DELETE_CITY",
+            deletedCity: cityName
+        })
+    }
+    // function save() {
+    //     localStorage.setItem('appState', JSON.stringify({}))
+    // }
+
+
+    const props = {
+        currentCity: currentCity,
+        cityName: cityName,
+        onGetForecast: sendRequest,
+        onDeleteCity: handleDeleteCity,
+        // save:save
+    };
+
+    return props;
+}
+
+export default connect(
+    mapStateToProps,
+    null,
+    mergeProps
 )(TabTitle);

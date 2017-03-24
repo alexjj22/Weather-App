@@ -54,23 +54,17 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
     }
 
     function handleDeleteCity(){
-        // console.log(cityName)
         dispatch({
             type: "DELETE_CITY",
             deletedCity: cityName
         })
     }
-    // function save() {
-    //     localStorage.setItem('appState', JSON.stringify({}))
-    // }
-
 
     const props = {
         currentCity: currentCity,
         cityName: cityName,
         onGetForecast: sendRequest,
         onDeleteCity: handleDeleteCity,
-        // save:save
     };
 
     return props;

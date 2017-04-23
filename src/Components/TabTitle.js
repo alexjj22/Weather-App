@@ -1,31 +1,26 @@
 /**
  * Created by bigdrop on 13.03.17.
  */
-import React, {Component} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 
 import {request} from '../functions';
 
-class TabTitle extends Component {
-    render() {
-        const cityName = this.props.cityName;
-        const currentCity = this.props.currentCity;
-        // this.props.save()
-        return (
-            <li
-                className={ currentCity === cityName ? 'active-title' : '' }
-            >
-                <a
-                    href="#"
-                    onClick={ ()=> this.props.onGetForecast()}
-                >{ cityName }</a>
-                <span
-                    className="remove"
-                    onClick={ ()=> this.props.onDeleteCity() }
-                />
-            </li>
-        )
-    }
+const TabTitle = (props) => {
+    const {cityName, currentCity} = props;
+
+    return (
+        <li className={ currentCity === cityName ? 'active-title' : '' } >
+            <a
+                href="#"
+                onClick={ ()=> props.onGetForecast()}
+            >{ cityName }</a>
+            <span
+                className="remove"
+                onClick={ ()=> props.onDeleteCity() } />
+        </li>
+    )
+
 }
 
 function mapStateToProps(state) {
@@ -64,7 +59,7 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
         currentCity: currentCity,
         cityName: cityName,
         onGetForecast: sendRequest,
-        onDeleteCity: handleDeleteCity,
+        onDeleteCity: handleDeleteCity
     };
 
     return props;

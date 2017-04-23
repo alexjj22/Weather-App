@@ -9,8 +9,7 @@ class Wind extends Component{
     constructor(props){
         super(props);
 
-        this._showSpeed = this._showSpeed.bind(this);
-        this._showWindDirection = this._showWindDirection.bind(this);
+        this.timeout = 100;
     }
 
     _showSpeed(speed){
@@ -85,11 +84,10 @@ class Wind extends Component{
         const speed = this.props.weather.wind.speed;
         const deg = this.props.weather.wind.deg;
 
-
         setTimeout( ()=> {
             this._showWindDirection( deg );
             this._showSpeed( speed );
-        }, 100);
+        }, this.timeout);
 
     }
 }

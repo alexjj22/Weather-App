@@ -8,37 +8,45 @@ import { connect } from 'react-redux';
 import TabTitle from './TabTitle';
 import TabContent from './tab-content/TabContent';
 
+import {checkEmptyObj} from '../functions';
+import {getWeatherOnInit} from '../storage/onInitAction';
+
 class Tabs extends Component{
 
     _showWeather(weather){
-        if( JSON.stringify(weather) !== "{}"){
+        if( checkEmptyObj(weather) ){
             return ( <TabContent/> )
         }
     }
 
+    componentDidMount(){
+        getWeatherOnInit();
+    }
+
     render(){
-        const weather = this.props.cityWeather;
+        const {cityList, cityWeather}= this.props;
         return (
             <div className='tab'>
                 <ul className="tab-title">
                     {
-                        this.props.cityList.map( (item, index) => {
+                        cityList.map( (item, index) => {
                             return (
                                 <TabTitle
                                     key={ item.id }
                                     cityName={ item.city }
-
                                 />
                             )
                         })
                     }
                 </ul>
 
-                { this._showWeather( weather ) }
+                { this._showWeather( cityWeather ) }
 
             </div>
         )
     }
+
+
 }
 
 function mapStateToProps(state) {

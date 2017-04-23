@@ -11,10 +11,9 @@ class App extends Component {
         <div>
           <Header/>
           <Form/>
-            <Tabs/>
+          <Tabs/>
         </div>
-
-    );
+    )
   }
 }
 

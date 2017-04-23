@@ -5,8 +5,6 @@
 import {createStore, applyMiddleware} from 'redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
-import {request} from '../functions';
-
 
 function setDefaultStorage() {
     const initialState = {
@@ -62,7 +60,7 @@ function reducer(state = setDefaultStorage(), action) {
             } else {
                 return {
                     ...state,
-                    cityList: newCityList,
+                    cityList: newCityList
                 };
             }
         default:
@@ -81,18 +79,6 @@ store.subscribe(() =>{
     updateLocalStorage()
 });
 
-function getWeatherOnInit() {
-    const currentCity = store.getState().currentCity;
-    if (currentCity.length){
-        request(currentCity, (response) => {
-            store.dispatch({
-                type: "GET_WEATHER",
-                weather: response
-            })
-        })
-    }
-}
-getWeatherOnInit();
 
 
 export default store;

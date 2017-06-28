@@ -3,15 +3,12 @@
  */
 
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 import TabTitle from './TabTitle';
 import TabContent from './tab-content/TabContent';
-
 import {checkEmptyObj} from '../functions';
-import {getWeatherOnInit} from '../storage/onInitAction';
 
-class Tabs extends Component{
+export default class Tabs extends Component{
 
     _showWeather(weather){
         if( checkEmptyObj(weather) ){
@@ -20,11 +17,15 @@ class Tabs extends Component{
     }
 
     componentDidMount(){
-        getWeatherOnInit();
+        const {onGetForecast, currentCity} = this.props;
+
+        if(currentCity !== '') onGetForecast(currentCity);
     }
 
+
     render(){
-        const {cityList, cityWeather}= this.props;
+
+        const {cityList, cityWeather, currentCity, onGetForecast, onDeleteCity}= this.props;
         return (
             <div className='tab'>
                 <ul className="tab-title">
@@ -34,6 +35,9 @@ class Tabs extends Component{
                                 <TabTitle
                                     key={ item.id }
                                     cityName={ item.city }
+                                    currentCity={ currentCity }
+                                    onGetForecast={ onGetForecast }
+                                    onDeleteCity={ onDeleteCity }
                                 />
                             )
                         })
@@ -45,21 +49,6 @@ class Tabs extends Component{
             </div>
         )
     }
-
-
 }
 
-function mapStateToProps(state) {
-    const {cityList, cityWeather} = state;
-
-    return {
-        cityList: cityList,
-        cityWeather: cityWeather
-    }
-}
-
-export default connect(
-    mapStateToProps,
-    null
-)(Tabs);
 

@@ -19,3 +19,9 @@ export function checkEmptyObj(obj){
     }
     return false
 }
+
+export function updateLocalStorage(store){
+    store.subscribe(() =>{
+        localStorage.setItem('weatherStorage', JSON.stringify(store.getState()))
+    })
+}

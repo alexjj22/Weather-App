@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
 import Header from './Components/Header';
-import Tabs from './Components/Tabs';
-import Form from './Components/Form';
+import Form from './Containers/FormContainer';
+import Tabs from './Containers/TabsContainer';
 
 
-class App extends Component {
+export default class App extends Component {
   render() {
     return (
         <div>
@@ -16,5 +16,3 @@ class App extends Component {
     )
   }
 }
-
-export default App;

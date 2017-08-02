@@ -2,10 +2,9 @@
  * Created by bigdrop on 13.03.17.
  */
 import React from 'react';
-import { connect } from 'react-redux';
 
 const Describing = (props) =>{
-    const arr = props.weather.weather;
+    const arr = props.forecast.weather;
     const text = arr.reduce( (sum, current)=> sum + current.description + ', ', '' );
     return (
         <li className="description">
@@ -15,13 +14,4 @@ const Describing = (props) =>{
     )
 };
 
-function mapStateToProps(state) {
-    return {
-        weather: state.cityWeather
-    }
-}
-
-export default connect(
-    mapStateToProps,
-    null
-)(Describing);
+export default Describing;

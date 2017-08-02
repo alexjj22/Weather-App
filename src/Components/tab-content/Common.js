@@ -3,10 +3,9 @@
  */
 
 import React from 'react';
-import { connect } from 'react-redux';
 
 const Common = (props) => {
-    const weather = props.weather;
+    const weather = props.forecast;
     return (
         <li className="common-info-wrap">
             <h4>common</h4>
@@ -103,13 +102,4 @@ const Common = (props) => {
     );
 };
 
-function mapStateToProps(state){
-    return {
-        weather: state.cityWeather
-    }
-}
-
-export default connect(
-    mapStateToProps,
-    null
-)(Common);
+export default Common;

@@ -2,7 +2,7 @@
  * Created by bigdrop on 10.03.17.
  */
 import React, { Component } from 'react';
-
+import {toUpperCase} from '../functions/functions'
 
 export default class Form extends Component{
     constructor(props){
@@ -13,24 +13,12 @@ export default class Form extends Component{
     handleSubmit(e){
         e.preventDefault();
 
-        const cityName = this.input.value;
+        let cityName = this.input.value;
+        let correctCityName = toUpperCase(cityName);
 
-        function toUpperCase(str) {
-            str = str.toLowerCase().split(' ');
-            for(let i = 0; i < str.length; i++){
-                str[i] = str[i].split('');
-                str[i][0] = str[i][0].toUpperCase();
-                str[i] = str[i].join('');
-            }
-            return str.join(' ');
-        }
-
-        const correctCityName = toUpperCase(cityName);
-
-        this.props.onCityAdd(correctCityName);
+        this.props.onGetApi(correctCityName);
 
         this.input.value = "";
-
     }
 
     render(){
@@ -39,7 +27,7 @@ export default class Form extends Component{
                 <input
                     type="text"
                     placeholder="Enter your city"
-                    ref={ (input)=> this.input = input}
+                    ref={ input=> this.input = input }
                 />
             </form>
         )

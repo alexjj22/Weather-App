@@ -4,13 +4,13 @@
 import React from 'react';
 
 const TabTitle = (props) => {
-    const {cityName, currentCity, onGetForecast, onDeleteCity} = props;
+    const {cityName, currentCity, onGetApi, onDeleteCity} = props;
 
     return (
         <li className={ currentCity === cityName ? 'active-title' : '' } >
             <a
                 href="#"
-                onClick={ ()=> { if(currentCity !== cityName) onGetForecast(cityName) }  }
+                onClick={ ()=> { if(currentCity !== cityName) onGetApi(cityName) }  }
             >{ cityName }</a>
             <span
                 className="remove"

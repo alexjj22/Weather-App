@@ -7,17 +7,16 @@ import Describing from './Describing';
 import Wind from './Wind';
 import Common from './Common';
 
-const TabContent = ()=> {
+const TabContent = (props)=> {
     return (
         <div className='content'>
             <ul className="weather-describer">
-                <Describing/>
-                <Wind/>
-                <Common/>
+                <Describing forecast={props.forecast}/>
+                <Wind forecast={props.forecast}/>
+                <Common forecast={props.forecast}/>
             </ul>
         </div>
     )
 };
 
 export default TabContent;
-

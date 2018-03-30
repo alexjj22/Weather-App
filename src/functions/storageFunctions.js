@@ -1,6 +1,3 @@
-/**
- * Created by Александр on 09.07.2017.
- */
 export function setDefaultStorage() {
     const initialState = {
         cityList: [
@@ -21,10 +18,4 @@ export function setDefaultStorage() {
             forecast: {}
         }
     }
-}
-
-export function updateLocalStorage(store){
-    store.subscribe(() =>{
-        localStorage.setItem('weatherStorage', JSON.stringify(store.getState().weather))
-    })
 }

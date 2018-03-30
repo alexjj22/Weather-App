@@ -8,12 +8,12 @@ import Error from './Error';
 
 export default class App extends Component {
     componentDidMount() {
-        const { weather, onGetApi} = this.props;
-        weather.currentCity.length && onGetApi(weather.currentCity);
+        // const { weather, onGetApi} = this.props;
+        // weather.currentCity.length && onGetApi(weather.currentCity);
     }
 
     render() {
-        const {fetch, weather, onGetApi, onDeleteCity} = this.props;
+        // const {fetch, weather, onGetApi, onDeleteCity} = this.props;
         const {fetched, fetching, error} = fetch;
 
         if (fetching && !fetched) {
@@ -32,13 +32,13 @@ export default class App extends Component {
             <div>
                 <Header/>
                 <Form
-                    onGetApi={onGetApi}
+                    // onGetApi={onGetApi}
                 />
-                <Tabs
-                    settings={weather}
-                    onGetApi={onGetApi}
-                    onDeleteCity={onDeleteCity}
-                />
+                {/*<Tabs*/}
+                    {/*settings={weather}*/}
+                    {/*onGetApi={onGetApi}*/}
+                    {/*onDeleteCity={onDeleteCity}*/}
+                {/*/>*/}
             </div>
         )
     }

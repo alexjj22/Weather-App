@@ -1,6 +1,3 @@
-/**
- * Created by bigdrop on 13.03.17.
- */
 import React from 'react';
 
 const TabTitle = (props) => {

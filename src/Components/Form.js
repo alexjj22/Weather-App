@@ -1,24 +1,32 @@
-/**
- * Created by bigdrop on 10.03.17.
- */
 import React, { Component } from 'react';
-import {toUpperCase} from '../functions/functions'
+import {toUpperCase} from '../functions/functions';
+import { observable, decorate, action } from "mobx";
+import {observer, inject} from 'mobx-react'
 
-export default class Form extends Component{
+
+class Form extends Component{
     constructor(props){
         super(props);
+        this.cityName = '';
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.updateCityName = this.updateCityName.bind(this);
+    }
+
+    updateCityName(e){
+      this.cityName = e.target.value
     }
 
     handleSubmit(e){
         e.preventDefault();
+        const {
+          weatherStore: { onGetApi }
+        } = this.props;
 
-        let cityName = this.input.value;
-        let correctCityName = toUpperCase(cityName);
+        const correctCityName = toUpperCase(this.cityName);
 
-        this.props.onGetApi(correctCityName);
+        onGetApi(correctCityName);
 
-        this.input.value = "";
+        this.cityName = "";
     }
 
     render(){
@@ -27,9 +35,20 @@ export default class Form extends Component{
                 <input
                     type="text"
                     placeholder="Enter your city"
-                    ref={ input=> this.input = input }
+                    value={ this.cityName }
+                    onChange={ e => this.updateCityName(e) }
                 />
             </form>
         )
     }
 }
+
+export default inject("weatherStore")(
+  observer(
+    decorate(Form, {
+      cityName: observable,
+      updateCityName: action,
+      handleSubmit: action
+    })
+  )
+)

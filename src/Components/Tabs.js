@@ -1,23 +1,23 @@
-/**
- * Created by bigdrop on 13.03.17.
- */
-
 import React from 'react';
-
 import TabTitle from './TabTitle';
 import TabContent from './tab-content/TabContent';
 import {checkEmptyObj} from '../functions/functions';
+import {observer, inject} from 'mobx-react'
 
-export default function Tabs(props) {
+function Tabs(props){
 
-    const {settings, onGetApi, onDeleteCity} = props;
-    const {cityList, forecast, currentCity}= settings;
+    const {
+        onGetApi,
+        cityList,
+        currentCity,
+        forecast,
+        onDeleteCity,
+    } = props.weatherStore;
 
     function showWeather(forecast) {
         if (checkEmptyObj(forecast)) {
             return (
-                <TabContent
-                    forecast={forecast}/>
+                <TabContent forecast={forecast}/>
             )
         }
     }
@@ -44,7 +44,6 @@ export default function Tabs(props) {
 
         </div>
     )
-
 }
 
-
+export default inject("weatherStore")( observer( weatherStore => Tabs(weatherStore)) )

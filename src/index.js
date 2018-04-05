@@ -2,10 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './Components/App'
 import './style/app.css';
+import WeatherStore from './store/WeatherStore';
+import { Provider } from "mobx-react";
+import { configure } from 'mobx';
 
-// http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=52d7e8bed91901222e31ebc77c311f2a
+configure({ enforceActions: true });
+
 
 ReactDOM.render(
-  <App />,
+  <Provider weatherStore={ new WeatherStore() }>
+    <App />
+  </Provider>,
   document.querySelector('.app')
 );
